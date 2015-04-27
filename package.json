@@ -15,5 +15,8 @@
     "grunt-contrib-uglify": "^0.9.1",
     "grunt-protractor-runner": "^2.0.0",
     "grunt-serve": "^0.1.6"
+  },
+  "dependencies": {
+    "grunt-contrib-watch": "^0.6.1"
   }
 }
