@@ -1,3 +1,4 @@
+(function () {
     'use strict';
     var demoModule = angular.module('demoApp');
     
@@ -7,3 +8,4 @@
     	$scope.routeParams = $routeParams;
         $scope.containerBkColor = 'background-color:red';
     };
+}());

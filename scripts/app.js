@@ -6,24 +6,77 @@
  */
 angular.module('demoApp', [
   	'ngAnimate',    // animations
-    'ngRoute',      // routing
+    'ngRoute',      // routing with ng route [routes]
+    'ui.router',    // routing with ui router [states]
     'ngResource',   // REST api calls
     'ngSanitize',   // sanitizes html bindings 
   ])
-.config(function ($routeProvider, $httpProvider, $locationProvider) {
+.config(function ($routeProvider, $stateProvider, $httpProvider, $locationProvider) {
     $routeProvider
     .when('/demo', {
-      templateUrl: 'views/demo.html',
+      templateUrl: '/views/demo.html',
       controller: 'demoCtrl'
     })
-    .when('/demo/:firstParam/:secondParams', {
-      templateUrl: 'views/demo.html',
+    .when('/demo/:firstParam/:secondParam', {
+      templateUrl: '/views/demo.html',
       controller: 'demoCtrl'
     })
     .when('/login', {
       templateUrl: '/views/login.html',
       controller: 'loginCtrl'
+    });
+
+    //routing based on states
+    $stateProvider 
+    .state('demo', {
+      url: '/demo',
+      templateUrl: '/views/_layout.html',
+      controller: 'homeCtrl'
     })
+    .state('demo.container', {
+      url: '/list',
+      template: 'Container text'
+    })
+    .state('home', {
+      url: '/home',
+      templateUrl: '/views/home.html',
+      controller: 'homeCtrl'
+    })
+    .state('home.list', {
+        url: '/list',
+        templateUrl: 'views/partial-home.html',
+        controller: function($scope) {
+            $scope.dogs = ['Bernese', 'Husky', 'Goldendoodle'];
+        }
+    })
+    .state('home.paragraph', {
+        url: '/paragraph',
+        template: 'I am a paragraph'
+    })
+    .state('about', {
+        url: '/about',
+        views: {
+            // the main template will be placed here (relatively named)
+            '': { templateUrl: '/views/about.html' },
+            // the child views will be defined here (absolutely named)
+            'columnOne@about': { template: 'Look I am a column!' },
+            // for column two, we'll define a separate controller 
+            'columnTwo@about': { 
+                templateUrl: '/views/table-data.html',
+                controller: 'aboutCtrl'
+            }
+        }
+    })
+    .state('demoParams', {
+      url: '/demo/:firstParam/:secondParam',
+      templateUrl: '/views/demo.html',
+      controller: 'demoCtrl'
+    })
+    .state('login', {
+      url: '/login',
+      templateUrl: '/views/login.html',
+      controller: 'demoCtrl'
+    });
 
    //$locationProvider.html5Mode(true);
    $httpProvider.interceptors.push('httpResponseInterceptor');
