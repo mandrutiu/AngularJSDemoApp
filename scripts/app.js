@@ -34,7 +34,7 @@ angular.module('demoApp', [
       controller: 'homeCtrl'
     })
     .state('demo.container', {
-      url: '/list',
+      url: '/container',
       template: 'Container text'
     })
     .state('home', {
