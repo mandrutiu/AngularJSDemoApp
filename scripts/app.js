@@ -92,6 +92,16 @@ angular.module('demoApp', [
   })
 .factory('httpResponseInterceptor',['$q','$location','$window',function($q,$location,$window){
       return {
+        'request': function (request) {
+          if (request.url.indexOf('controls') != -1) {
+              var date = new Date();
+              request.url = request.url.replace(/[?|&]cacheBuster=\d+/, '');
+              request.url += request.url.indexOf('?') === -1 ? '?' : '&';
+              request.url += 'cacheBuster=' + date.getTime();
+          }
+
+              return request || $q.when(request);
+        },
         response: function(response){
           if (response.status === 401) {
             console.log("Response 401");
