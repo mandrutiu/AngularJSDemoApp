@@ -40,7 +40,7 @@ module.exports = function(grunt) {
 	grunt.loadNpmTasks('grunt-contrib-uglify');
 
 	
-	//grunt.registerTask('server', 'connect:server');
+	grunt.registerTask('server', 'connect:server');
 
 	grunt.registerTask('default', ['concat', 'uglify']);
 }

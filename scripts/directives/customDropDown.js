@@ -8,15 +8,15 @@ angular.module('demoApp').directive('customDropdown', function() {
     scope: {
       elements:'=',
       selectModel:'=',
-      onChangeMethod:'&'
+      onChangeMethod:'&',
+      label:"@"
     },
     templateUrl: '/views/custom-dropdown.html',
     controller: function ($scope, $element, $attrs) {
-
+      
       $scope.applyElementSelection = function(element){
-        $scope.selectModel = { fieldData:element };
+        $scope.selectModel = element;
         $scope.onChangeMethod({ element:element });
-        $scope.$apply();
       }
     }
   }

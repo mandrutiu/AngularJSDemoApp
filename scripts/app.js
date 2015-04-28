@@ -8,8 +8,8 @@ angular.module('demoApp', [
   	'ngAnimate',    // animations
     'ngRoute',      // routing with ng route [routes]
     'ui.router',    // routing with ui router [states]
-    'ngResource',   // REST api calls
     'ngSanitize',   // sanitizes html bindings 
+    'restModule'    //rest services module
   ])
 .config(function ($routeProvider, $stateProvider, $httpProvider, $locationProvider) {
     $routeProvider
@@ -25,6 +25,9 @@ angular.module('demoApp', [
       templateUrl: '/views/login.html',
       controller: 'loginCtrl'
     });
+/*  .otherwise({
+    redirectTo: '/login'
+  });*/
 
     //routing based on states
     $stateProvider 
@@ -41,6 +44,7 @@ angular.module('demoApp', [
       url: '/home',
       templateUrl: '/views/home.html',
       controller: 'homeCtrl'
+      //controllerAs: 'sc'
     })
     .state('home.list', {
         url: '/list',
@@ -76,6 +80,11 @@ angular.module('demoApp', [
       url: '/login',
       templateUrl: '/views/login.html',
       controller: 'demoCtrl'
+    })
+    .state('controls',{
+      url:'/controls',
+      templateUrl:'/views/controls.html',
+      controller:'controlsCtrl'
     });
 
    //$locationProvider.html5Mode(true);

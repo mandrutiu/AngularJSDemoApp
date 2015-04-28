@@ -1,16 +1,16 @@
 (function () {
     'use strict';
-    var demoApp = angular.module('demoApp')
+    var demoApp = angular.module('restModule',['ngResource' // REST api calls
+                                              ]);
 
     demoApp.value('restApiConfig', {
         countries:{ url: '/json/countries.json'}
     });
  
-    utzformBuilderApp.factory('fbRestService', ['$resource','$window', 'restApiConfig', 'myConfig',
-        function ($resource, $window, restApiConfig, myConfig) {
-
+    demoApp.factory('RestService', ['$resource', 'restApiConfig', 
+        function ($resource, restApiConfig) {
             //compile the rest service URL from the configuration file /common/config.js
-            var factory = function () { };
+            var factory = function() {};
 
             factory.prototype.getCountries = function () {
                 return $resource(restApiConfig.countries.url, {}, {});

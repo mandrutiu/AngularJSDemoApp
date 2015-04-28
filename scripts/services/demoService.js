@@ -1,14 +1,33 @@
 (function (){
 'use strict';
-angular.module('demoApp').factory('userInfoService', ['$rootScope', function($rootScope) {
-  var service = {};
+var demoApp = angular.module('demoApp');
+demoApp.factory('demoService', ['$http', '$q', '$rootScope', 'RestService', demoAppMethod]);  
+	function demoAppMethod($http, $q, $rootScope, rest) {
+	  var factory = {};
+	  var restInstance = rest.getInstance();
 
-  service.getUserName = function() {
-    return $rootScope.globals.currentUser.username;
-  };
+	  factory.getCountries = function() {
+	    return restInstance.getCountries().get().$promise;
+	  };
 
-  return service;
-}]);
+	  factory.getCountriesHttp = function(){
+      	var deferred = $q.defer();
+      	$http.get('json/countries.json')
+	        .success(function(data){
+	          if (data){
+	            deferred.resolve(data);
+	          } else {
+	            deferred.reject();
+	          }
+	        })
+	        .error(function(){
+	          deferred.reject();
+	        });
+      	return deferred.promise;
+	  }
 
-});
+	  return factory;
+	}
+
+}());
  
