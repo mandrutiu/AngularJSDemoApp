@@ -4,7 +4,8 @@
     
     demoModule.controller('homeCtrl', homeCtrlMethod);
 
-    function homeCtrlMethod($scope, $routeParams) {
+    function homeCtrlMethod() {
     	this.info = "How do you do ?";
+    	this.text = "test";
     };
 }());

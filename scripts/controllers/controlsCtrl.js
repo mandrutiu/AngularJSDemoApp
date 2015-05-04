@@ -6,14 +6,14 @@
 
     function controlsCtrlMethod($scope, $routeParams, demoService) {
 	  	setTimeout(function () {
-	  		$scope.dropDown = {id:1, name:'first item'};
-	        /*$scope.$apply(function () {
-	            $scope.dropDown = {id:1, name:'first item'};
-	        });*/
+	  	//	$scope.dropDown = {id:1, name:'first item'};
+	        $scope.$apply(function () {
+	            $scope.dropDown = {id:2, name:'2nd item'};
+	        });
     	}, 2000);
 
     	//set countries
-    	demoService.getCountriesHttp().then(function(data){
+    	demoService.getCountries().then(function(data){
     		$scope.countries = data.countries;
     	});
 

@@ -40,11 +40,16 @@ angular.module('demoApp', [
       url: '/container',
       template: 'Container text'
     })
+    .state('demo.login', {
+      url: '/loginContainer',
+      templateUrl: '/views/login.html',
+      controller: 'demoCtrl'
+    })
     .state('home', {
       url: '/home',
       templateUrl: '/views/home.html',
-      controller: 'homeCtrl'
-      //controllerAs: 'sc'
+      controller: 'homeCtrl',
+      controllerAs: 'sc'
     })
     .state('home.list', {
         url: '/list',

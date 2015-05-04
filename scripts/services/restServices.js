@@ -2,7 +2,6 @@
     'use strict';
     var demoApp = angular.module('restModule',['ngResource' // REST api calls
                                               ]);
-
     demoApp.value('restApiConfig', {
         countries:{ url: '/json/countries.json'}
     });
