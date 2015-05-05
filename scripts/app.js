@@ -84,7 +84,7 @@ angular.module('demoApp', [
     .state('login', {
       url: '/login',
       templateUrl: '/views/login.html',
-      controller: 'demoCtrl'
+      controller: 'loginCtrl'
     })
     .state('controls',{
       url:'/controls',
